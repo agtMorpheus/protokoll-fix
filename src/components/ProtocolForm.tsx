@@ -10,6 +10,7 @@ import { Protocol, NetworkType, TestType, InspectionStatus } from "@/types/proto
 import { toast } from "sonner";
 import { Save } from "lucide-react";
 import MeasurementTable from "./MeasurementTable";
+import InspectionSection from "./InspectionSection";
 
 interface ProtocolFormProps {
   onSubmit: (protocol: Omit<Protocol, "id" | "createdAt" | "updatedAt">) => void;
@@ -35,7 +36,7 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
       betriebsmittel: "na",
       trennSchalten: "na",
       brandabschottungen: "na",
-      gebaeude: "na",
+      gebaeudeTechnik: "na",
       kabel: "na",
       kennzeichnung: "na",
       funktionspruefung: "na",
@@ -48,11 +49,12 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
       zugaenglichkeit: "na",
       schutzpotential: "na",
       funktionSchutz: "na",
-      rechtsdrehfeld: "na",
       drehrichtung: "na",
-      reinigung: "na",
+      schutzpotentialZusatz: "na",
       dokumentation: "na",
-      gebaeudeTechnik: "na",
+      reinigung: "na",
+      rechtsdrehfeld: "na",
+      gebaeudeTechnikTest: "na",
     },
     standards: initialData?.standards || {
       vde0100_700: true,
@@ -374,6 +376,11 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
           </div>
         </CardContent>
       </Card>
+
+      <InspectionSection
+        besichtigungItems={formData.besichtigungItems}
+        onUpdate={updateInspectionItem}
+      />
 
       <Card>
         <CardHeader>

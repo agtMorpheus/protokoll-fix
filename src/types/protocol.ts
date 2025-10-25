@@ -58,9 +58,30 @@ export interface Protocol {
   netzform: NetworkType;
   netzbetreiber?: string;
   
-  // Inspection Items
+  // Inspection Items - Besichtigung & Erproben
   besichtigungItems: {
-    [key: string]: InspectionStatus;
+    betriebsmittel: InspectionStatus;
+    trennSchalten: InspectionStatus;
+    brandabschottungen: InspectionStatus;
+    gebaeudeTechnik: InspectionStatus;
+    kabel: InspectionStatus;
+    kennzeichnung: InspectionStatus;
+    funktionspruefung: InspectionStatus;
+    rcd: InspectionStatus;
+    schraubverbindungen: InspectionStatus;
+    kennzeichnungLeiter: InspectionStatus;
+    leiterverbindungen: InspectionStatus;
+    schutzeinrichtungen: InspectionStatus;
+    basisschutz: InspectionStatus;
+    zugaenglichkeit: InspectionStatus;
+    schutzpotential: InspectionStatus;
+    funktionSchutz: InspectionStatus;
+    drehrichtung: InspectionStatus;
+    schutzpotentialZusatz: InspectionStatus;
+    dokumentation: InspectionStatus;
+    reinigung: InspectionStatus;
+    rechtsdrehfeld: InspectionStatus;
+    gebaeudeTechnikTest: InspectionStatus;
   };
   
   // Test Standards
