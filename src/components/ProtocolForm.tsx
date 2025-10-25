@@ -9,6 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Protocol, NetworkType, TestType, InspectionStatus } from "@/types/protocol";
 import { toast } from "sonner";
 import { Save } from "lucide-react";
+import MeasurementTable from "./MeasurementTable";
 
 interface ProtocolFormProps {
   onSubmit: (protocol: Omit<Protocol, "id" | "createdAt" | "updatedAt">) => void;
@@ -69,6 +70,10 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
     pruefplakette: initialData?.pruefplakette ?? true,
     naechstePruefung: initialData?.naechstePruefung || "",
     bemerkung: initialData?.bemerkung || "",
+    measurements: initialData?.measurements || [],
+    stromkreisverteilerNr: initialData?.stromkreisverteilerNr || "",
+    einspeisung: initialData?.einspeisung || "",
+    erdungswiderstand: initialData?.erdungswiderstand || "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -427,6 +432,17 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
           </div>
         </CardContent>
       </Card>
+
+      <MeasurementTable
+        measurements={formData.measurements}
+        onChange={(measurements) => updateField("measurements", measurements)}
+        stromkreisverteilerNr={formData.stromkreisverteilerNr}
+        onStromkreisverteilerNrChange={(value) => updateField("stromkreisverteilerNr", value)}
+        einspeisung={formData.einspeisung}
+        onEinspeisungChange={(value) => updateField("einspeisung", value)}
+        erdungswiderstand={formData.erdungswiderstand}
+        onErdungswiderstandChange={(value) => updateField("erdungswiderstand", value)}
+      />
 
       <Card>
         <CardHeader>

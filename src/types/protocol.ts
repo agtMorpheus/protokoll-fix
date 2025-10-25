@@ -3,6 +3,36 @@ export type TestType = "neuanlage" | "erweiterung" | "aenderung" | "instandsetzu
 export type InspectionStatus = "io" | "nio" | "na";
 export type TestResult = "keine-maengel" | "maengel";
 
+export interface Measurement {
+  id: string;
+  posNr: string;
+  nr: string;
+  zielbezeichnung: string;
+  leitungTyp: string;
+  leitungAnzahl: string;
+  leitungQuerschnitt: string;
+  un: string;
+  fn: string;
+  schutzArt: string;
+  schutzCharakteristik: string;
+  schutzIn: string;
+  zsOhm: string;
+  znOhm: string;
+  ikKa: string;
+  risoOhne: string;
+  risoMit: string;
+  rcdArt: string;
+  rcdRpe: string;
+  rcdIn: string;
+  rcdIDeltaN: string;
+  rcdImess: string;
+  rcdAusloesezeitIn: string;
+  rcdAuslosezeittA: string;
+  rcdUl: string;
+  rcdUmess: string;
+  rcdDiffstrom: string;
+}
+
 export interface Protocol {
   id: string;
   createdAt: string;
@@ -54,4 +84,10 @@ export interface Protocol {
   pruefplakette: boolean;
   naechstePruefung?: string;
   bemerkung?: string;
+  
+  // Measurements
+  measurements: Measurement[];
+  stromkreisverteilerNr: string;
+  einspeisung: string;
+  erdungswiderstand: string;
 }
