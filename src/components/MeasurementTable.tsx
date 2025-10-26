@@ -76,48 +76,51 @@ const MeasurementTable = ({
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Messungen</CardTitle>
-        <CardDescription>Elektrische Messungen und Prüfwerte</CardDescription>
+        <CardTitle className="text-lg md:text-xl">Messungen</CardTitle>
+        <CardDescription className="text-xs md:text-sm">Elektrische Messungen und Prüfwerte</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
           <div>
-            <label className="text-sm font-medium">Stromkreisverteiler Nr.</label>
+            <label className="text-xs md:text-sm font-medium">Stromkreisverteiler Nr.</label>
             <Input
               value={stromkreisverteilerNr}
               onChange={(e) => onStromkreisverteilerNrChange(e.target.value)}
               placeholder="z.B. LVUM-"
               maxLength={50}
+              className="text-sm md:text-base"
             />
           </div>
           <div>
-            <label className="text-sm font-medium">Einspeisung</label>
+            <label className="text-xs md:text-sm font-medium">Einspeisung</label>
             <Input
               value={einspeisung}
               onChange={(e) => onEinspeisungChange(e.target.value)}
               maxLength={100}
+              className="text-sm md:text-base"
             />
           </div>
           <div>
-            <label className="text-sm font-medium">Erdungswiderstand RE (Ω)</label>
+            <label className="text-xs md:text-sm font-medium">Erdungswiderstand RE (Ω)</label>
             <Input
               value={erdungswiderstand}
               onChange={(e) => onErdungswiderstandChange(e.target.value)}
               placeholder="z.B. <0.5"
               maxLength={20}
+              className="text-sm md:text-base"
             />
           </div>
         </div>
 
-        <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold">Messreihen</h3>
-          <Button type="button" onClick={addMeasurement} size="sm" className="gap-2">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+          <h3 className="text-base md:text-lg font-semibold">Messreihen</h3>
+          <Button type="button" onClick={addMeasurement} size="sm" className="gap-2 w-full sm:w-auto">
             <Plus className="h-4 w-4" />
             Messung hinzufügen
           </Button>
         </div>
 
-        <div className="overflow-x-auto border rounded-lg">
+        <div className="overflow-x-auto border rounded-lg -mx-4 sm:mx-0">
           <Table>
             <TableHeader>
               <TableRow>
