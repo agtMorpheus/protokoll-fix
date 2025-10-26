@@ -105,6 +105,7 @@ export interface Protocol {
   pruefplakette: boolean;
   naechstePruefung?: string;
   bemerkung?: string;
+  maengel?: string;
   
   // Measurements
   measurements: Measurement[];

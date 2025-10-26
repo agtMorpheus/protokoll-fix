@@ -2,9 +2,10 @@ import { Protocol } from "@/types/protocol";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Edit, Trash2, FileText, Calendar, CheckCircle2, AlertCircle } from "lucide-react";
+import { Edit, Trash2, FileText, Calendar, CheckCircle2, AlertCircle, Download } from "lucide-react";
 import { format } from "date-fns";
 import { de } from "date-fns/locale";
+import { toast } from "sonner";
 
 interface ProtocolListProps {
   protocols: Protocol[];
@@ -21,6 +22,20 @@ const testTypeLabels: Record<string, string> = {
 };
 
 const ProtocolList = ({ protocols, onEdit, onDelete }: ProtocolListProps) => {
+  const exportAsJSON = (protocol: Protocol) => {
+    const dataStr = JSON.stringify(protocol, null, 2);
+    const dataBlob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(dataBlob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `protokoll-${protocol.anlage}-${format(new Date(protocol.createdAt), "yyyy-MM-dd")}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    toast.success("Protokoll als JSON exportiert");
+  };
+
   return (
     <div className="space-y-3 md:space-y-4">
       {protocols.map((protocol) => (
@@ -88,7 +103,16 @@ const ProtocolList = ({ protocols, onEdit, onDelete }: ProtocolListProps) => {
                 </div>
               </div>
 
-              <div className="flex gap-2 w-full sm:w-auto">
+              <div className="flex gap-2 w-full sm:w-auto flex-wrap sm:flex-nowrap">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => exportAsJSON(protocol)}
+                  title="Als JSON exportieren"
+                  className="flex-1 sm:flex-none"
+                >
+                  <Download className="h-4 w-4" />
+                </Button>
                 <Button
                   variant="outline"
                   size="icon"

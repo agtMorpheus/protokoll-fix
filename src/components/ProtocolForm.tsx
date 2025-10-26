@@ -72,6 +72,7 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
     pruefplakette: initialData?.pruefplakette ?? true,
     naechstePruefung: initialData?.naechstePruefung || "",
     bemerkung: initialData?.bemerkung || "",
+    maengel: initialData?.maengel || "",
     measurements: initialData?.measurements || [],
     stromkreisverteilerNr: initialData?.stromkreisverteilerNr || "",
     einspeisung: initialData?.einspeisung || "",
@@ -508,6 +509,18 @@ const ProtocolForm = ({ onSubmit, initialData, isEditing }: ProtocolFormProps) =
               value={formData.bemerkung}
               onChange={(e) => updateField("bemerkung", e.target.value)}
               placeholder="Zusätzliche Anmerkungen..."
+              rows={4}
+              maxLength={2000}
+            />
+          </div>
+
+          <div>
+            <Label htmlFor="maengel">Mängel</Label>
+            <Textarea
+              id="maengel"
+              value={formData.maengel}
+              onChange={(e) => updateField("maengel", e.target.value)}
+              placeholder="Beschreibung der festgestellten Mängel..."
               rows={4}
               maxLength={2000}
             />
